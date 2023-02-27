@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>testes</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: #111827;
+      }
+
+      button {
+        margin: 10px;
+      }
+
+      .button-container {
+        width: 600px;
+        margin-left: 10px;
+      }
+
+      video {
+        width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button-container">
+      <div>
+        <button type="button" disabled id="init">
+          Initialize Blink Recognition
+        </button>
+        <output id="status"></output>
+      </div>
+    </div>
+    <video id="video" controls src="./assets/video.mp4"></video>
+    <script src="src/index.js" type="module"></script>
+  </body>
+</html>
