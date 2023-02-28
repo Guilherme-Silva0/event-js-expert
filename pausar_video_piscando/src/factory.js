@@ -5,11 +5,11 @@ import Service from "./service.js";
 import View from "./view.js";
 
 async function getWorker() {
-  if (supportsWorkerType()) {
-    console.log("initializing esm workers");
-    const worker = new Worker("./src/worker.js", { type: "module" });
-    return worker;
-  }
+  // if (supportsWorkerType()) {
+  //   console.log("initializing esm workers");
+  //   const worker = new Worker("./src/worker.js", { type: "module" });
+  //   return worker;
+  // }
   console.warn(`Your browser doesn't support esm modules on webworkers!`);
   console.warn(`Importing libraries...`);
   await import("https://unpkg.com/@tensorflow/tfjs-core@2.4.0/dist/tf-core.js");
@@ -41,7 +41,7 @@ async function getWorker() {
   await service.loadModel();
   console.log("tf model loaded!");
 
-  setTimeout(() => worker.onmessage({ data: "READY" }), 500);
+  setTimeout(() => worker.onmessage({ data: "READY" }), 1000);
   return workerMock;
 }
 

@@ -17,6 +17,10 @@
         height: 100vh;
         background-color: #111827;
         color: #efefef;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       button {
@@ -39,12 +43,11 @@
       }
 
       .button-container {
-        width: 600px;
-        margin-left: 10px;
+        width: 100%;
       }
 
       video {
-        width: 800px;
+        width: 100%;
       }
     </style>
   </head>
@@ -52,12 +55,12 @@
     <div class="button-container">
       <div>
         <button type="button" disabled id="init">
-          Initialize Blink Recognition
+          Inicializar Reconhecimento de Piscada
         </button>
         <output id="status"></output>
       </div>
     </div>
-    <video id="video" controls src="./assets/video.mp4"></video>
+    <video id="video" loop controls src="./assets/video.mp4"></video>
     <script src="src/index.js" type="module"></script>
   </body>
 </html>
