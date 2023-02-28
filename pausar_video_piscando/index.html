@@ -16,10 +16,26 @@
         width: 100vw;
         height: 100vh;
         background-color: #111827;
+        color: #efefef;
       }
 
       button {
         margin: 10px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: none;
+        color: #111827;
+        background-color: #0099dd;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+      }
+
+      button:disabled {
+        opacity: 0.4;
       }
 
       .button-container {
@@ -29,6 +45,10 @@
 
       video {
         width: 800px;
+      }
+
+      video#video-camera {
+        transform: rotateY(180deg);
       }
     </style>
   </head>
