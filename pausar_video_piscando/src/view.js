@@ -7,16 +7,15 @@ export default class View {
   });
   #videoElement = document.querySelector("#video");
 
-  getVideoframe(video) {
+  getVideoFrame(video) {
     const canvas = this.#videoFrameCanvas;
-    const [width, height] = [video.width, video.height];
+    const [width, height] = [video.videoWidth, video.videoHeight];
     canvas.width = width;
     canvas.height = height;
 
     this.#canvasContext.drawImage(video, 0, 0, width, height);
     return this.#canvasContext.getImageData(0, 0, width, height);
   }
-
   togglePlayVideo() {
     if (this.#videoElement.paused) {
       this.#videoElement.play();
@@ -24,7 +23,6 @@ export default class View {
     }
     this.#videoElement.pause();
   }
-
   enableButton() {
     this.#btnInit.disabled = false;
   }
@@ -32,7 +30,6 @@ export default class View {
   configureOnBtnClick(fn) {
     this.#btnInit.addEventListener("click", fn);
   }
-
   log(text) {
     this.#statusElement.innerHTML = text;
   }

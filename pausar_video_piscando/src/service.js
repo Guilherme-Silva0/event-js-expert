@@ -1,14 +1,13 @@
-import { prepareRunCheck } from "../../lib/shared/util.js";
-const { shouldRun } = prepareRunCheck({ timeDelay: 2000 });
-const EAR_THRESHOLD = 0.27;
+import { prepareRunChecker } from "../../lib/shared/util.js";
+const { shouldRun } = prepareRunChecker({ timerDelay: 500 });
 
+const EAR_THRESHOLD = 0.27;
 export default class Service {
   #model = null;
   #faceLandmarksDetection;
   constructor({ faceLandmarksDetection }) {
     this.#faceLandmarksDetection = faceLandmarksDetection;
   }
-
   async loadModel() {
     this.#model = await this.#faceLandmarksDetection.load(
       this.#faceLandmarksDetection.SupportedPackages.mediapipeFacemesh,
@@ -48,6 +47,7 @@ export default class Service {
   async handBlinked(video) {
     const predictions = await this.#estimateFaces(video);
     if (!predictions.length) return false;
+
     for (const prediction of predictions) {
       // Right eye parameters
       const lowerRight = prediction.annotations.rightEyeUpper0;
@@ -62,6 +62,7 @@ export default class Service {
       const blinked = leftEAR <= EAR_THRESHOLD && rightEAR <= EAR_THRESHOLD;
       if (!blinked) continue;
       if (!shouldRun()) continue;
+
       return blinked;
     }
     return false;
