@@ -21,10 +21,9 @@ export default class View {
   drawResults(hands) {
     for (const { keypoints, handedness } of hands) {
       if (!keypoints) continue;
-      this.#canvasContext.fillStyle =
-        handedness === "Left" ? "#d2335c" : "#0099dd";
-      this.#canvasContext.strokeStyle = "#fff";
-      this.#canvasContext.lineWidth = 8;
+      this.#canvasContext.fillStyle = "#0099dd";
+      this.#canvasContext.strokeStyle = "#efefef";
+      this.#canvasContext.lineWidth = 5;
       this.#canvasContext.lineJoin = "round";
 
       // Juntas
@@ -33,6 +32,21 @@ export default class View {
       //dedos
       this.#drawFingerAndHoverElements(keypoints);
     }
+  }
+
+  clickOnElement(x, y) {
+    const element = document.elementFromPoint(x, y);
+    if (!element) return;
+    const rect = element.getBoundingClientRect();
+    const event = new MouseEvent("click", {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      clientX: rect.left + x,
+      clientY: rect.top + y,
+    });
+
+    element.dispatchEvent(event);
   }
 
   #drawJoients(keypoints) {

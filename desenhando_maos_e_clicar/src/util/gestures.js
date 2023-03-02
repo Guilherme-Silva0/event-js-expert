@@ -1,54 +1,54 @@
 const { GestureDescription, Finger, FingerCurl } = window.fp;
 
-const scrollDownGesture = new GestureDescription("scroll-down"); // ✊️
-const scrollUpGesture = new GestureDescription("scroll-up"); // 🖐
-const clickGesture = new GestureDescription("click"); // 🤏
+const ScrollDownGesture = new GestureDescription("scroll-down"); // ✊️
+const ScrollUpGesture = new GestureDescription("scroll-up"); // 🖐
+const ClickGesture = new GestureDescription("click"); // 🤏🏻
 
-// scrollDown
+// Scroll Down
 // -----------------------------------------------------------------------------
 
 // thumb: half curled
 // accept no curl with a bit lower confidence
-scrollDownGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0);
-scrollDownGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.5);
+ScrollDownGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0);
+ScrollDownGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.5);
 
 // all other fingers: curled
 for (let finger of [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
-  scrollDownGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
-  scrollDownGesture.addCurl(finger, FingerCurl.HalfCurl, 0.9);
+  ScrollDownGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
+  ScrollDownGesture.addCurl(finger, FingerCurl.HalfCurl, 0.9);
 }
 
-// scrollUp
+// ScrollUp
 // -----------------------------------------------------------------------------
 
 // no finger should be curled
 for (let finger of Finger.all) {
-  scrollUpGesture.addCurl(finger, FingerCurl.NoCurl, 1.0);
+  ScrollUpGesture.addCurl(finger, FingerCurl.NoCurl, 1.0);
 }
 
-// click
+// Click
 // -----------------------------------------------------------------------------
+ClickGesture.addCurl(Finger.Index, FingerCurl.HalfCurl, 0.9);
+ClickGesture.addCurl(Finger.Index, FingerCurl.FullCurl, 0.7);
 
-clickGesture.addCurl(Finger.index, FingerCurl.HalfCurl, 0.8);
-clickGesture.addCurl(Finger.index, FingerCurl.FullCurl, 0.5);
+ClickGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+ClickGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 0.4);
 
-clickGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
-clickGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 0.4);
+ClickGesture.addCurl(Finger.Middle, FingerCurl.HalfCurl, 1.0);
+ClickGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 0.9);
 
-clickGesture.addCurl(Finger.Middle, FingerCurl.HalfCurl, 1.0);
-clickGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 0.9);
+ClickGesture.addCurl(Finger.Ring, FingerCurl.HalfCurl, 1.0);
+ClickGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 0.9);
 
-clickGesture.addCurl(Finger.Ring, FingerCurl.HalfCurl, 1.0);
-clickGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 0.9);
+ClickGesture.addCurl(Finger.Pinky, FingerCurl.HalfCurl, 1.0);
+ClickGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 0.9);
 
-clickGesture.addCurl(Finger.Pinky, FingerCurl.HalfCurl, 1.0);
-clickGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 0.9);
+const knownGestures = [ScrollDownGesture, ScrollUpGesture, ClickGesture];
 
-const knownGestures = [scrollDownGesture, scrollUpGesture, clickGesture];
-const gestureString = {
+const gestureStrings = {
   "scroll-up": "🖐",
   "scroll-down": "✊️",
-  click: "🤏",
+  click: "🤏🏻",
 };
 
-export { knownGestures, gestureString };
+export { knownGestures, gestureStrings };

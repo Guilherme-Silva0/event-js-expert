@@ -1,4 +1,4 @@
-import { knownGestures, gestureString } from "./gestures.js";
+import { knownGestures, gestureStrings } from "./gestures.js";
 
 const fingerLookupIndexes = {
   thumb: [0, 1, 2, 3, 4],
@@ -8,4 +8,4 @@ const fingerLookupIndexes = {
   pinky: [0, 17, 18, 19, 20],
 };
 
-export { fingerLookupIndexes, knownGestures, gestureString };
+export { fingerLookupIndexes, knownGestures, gestureStrings };

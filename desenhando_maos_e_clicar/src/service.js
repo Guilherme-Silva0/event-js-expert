@@ -1,4 +1,4 @@
-import { knownGestures, gestureString } from "./util/util.js";
+import { knownGestures, gestureStrings } from "./util/util.js";
 
 export default class Service {
   #gestureEstimator;
@@ -32,7 +32,7 @@ export default class Service {
         (keypoint) => keypoint.name === "index_finger_tip"
       );
       yield { event: result.name, x, y };
-      console.log("dectected", gestureString[result.name]);
+      console.log("dectected", gestureStrings[result.name]);
     }
   }
 
@@ -53,7 +53,7 @@ export default class Service {
       solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${
         this.#handsVersion
       }`,
-      modelType: "lite",
+      modelType: "full",
       maxHands: 2,
     };
     this.#detector = await this.#handPoseDetection.createDetector(
