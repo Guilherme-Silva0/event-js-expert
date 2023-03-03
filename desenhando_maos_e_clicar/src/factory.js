@@ -12,12 +12,15 @@ import { fingerLookupIndexes } from "./util/util.js";
 
 const camera = await Camera.init();
 
+const styler = new PseudoStyler();
+
 const factory = {
   async initialize() {
     return Controller.initialize({
       camera,
       view: new View({
         fingerLookupIndexes,
+        styler,
       }),
       service: new Service({
         fingerpose: window.fp,

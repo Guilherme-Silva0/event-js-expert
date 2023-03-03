@@ -53,7 +53,7 @@ export default class Service {
       solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${
         this.#handsVersion
       }`,
-      modelType: "full",
+      modelType: "lite",
       maxHands: 2,
     };
     this.#detector = await this.#handPoseDetection.createDetector(
