@@ -32,7 +32,6 @@ export default class Service {
         (keypoint) => keypoint.name === "index_finger_tip"
       );
       yield { event: result.name, x, y };
-      console.log("dectected", gestureStrings[result.name]);
     }
   }
 
